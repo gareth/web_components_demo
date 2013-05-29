@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title></title>
+  <script src="/polymer/platform/MDV/mdv.js"></script>
+</head>
+<body>
+  <h1>Movies</h1>
+  <template id="movie" bind="{{result}}">
+    <li><h2>{{name}} ({{initial_release_date}})</h2></p>
+      <h3>Starring</h3>
+      <ul>
+        <template repeat="{{starring}}">
+          <li><template bind="{{actor}}">{{name}}</template></li>
+        </template>
+      </ul>
+    </li>
+  </template>
+  <script>
+    var template = document.getElementById('movie');
+    template.model = {
+      result: {
+        name: "Men in Black",
+        initial_release_date: "1997",
+        starring: [
+          { actor: { name: "Will Smith" } },
+          { actor: { name: "Tommy Lee Jones" } },
+        ]
+      }
+    }
+  </script>
+</body>
+</html>

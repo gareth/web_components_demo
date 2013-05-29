@@ -1,0 +1,16 @@
+<element name="movielist-actor" attributes="name image">
+  <template>
+    <style>
+      h1 { font-size: 1em; text-transform: uppercase; }
+      img { float: left; margin-right: 10px; }
+    </style>
+    <section>
+      <h1>{{name}}</h1>
+      <template bind if="{{image}}"><img src="{{image}}"></template>
+      <p><content></content></p>
+    </section>
+  </template>
+  <script>
+    Polymer.register(this)
+  </script>
+</element>

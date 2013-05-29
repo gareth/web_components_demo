@@ -1,0 +1,45 @@
+<html>
+<head>
+  <title>Web Components Demo</title>
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- <script src="/polymer/platform/platform.js"></script> -->
+  <script src="/polymer/platform/MDV/mdv.js"></script>
+
+  <style>
+    img.profile { float: left; margin-right: 10px; }
+  </style>
+
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-static-top"><div class="navbar-inner"><div class="container"><span class="brand">
+    Web Components 02 - Templates
+  </span></div></div></div>
+  <div class="container">
+
+    <h1>Actors</h1>
+    <p>Information about some actors for you!</p>
+
+    <template id="actorTemplate" repeat>
+      <section>
+        <h1>{{name}}</h1>
+        <img class="profile" src="{{image}}">
+        <p class="biog">{{description}}</p>
+      </section>
+    </template>
+
+  </div>
+  <script>
+    document.getElementById('actorTemplate').model = [{
+          name: "Robert Downey Jr",
+          image: "https://usercontent.googleapis.com/freebase/v1/image/m/063gl45",
+          description: "Robert John Downey, Jr. is an American actor who made his screen debut at the age of five, appearing in his father's film Pound. He has appeared in roles associated with the Brat Pack, such as Less Than Zero and Weird Science. Other films he has starred in include Air America, Soapdish, and Natural Born Killers. He starred as the title character in the 1992 film Chaplin, earning him a nomination for the Academy Award for Best Actor."
+        },
+        {
+          name: "Samuel L. Jackson",
+          image: "https://usercontent.googleapis.com/freebase/v1/image/m/0f5xn",
+          description: " Samuel Leroy Jackson is an American film and television actor and film producer. After becoming involved with the Civil Rights Movement, he moved on to acting in theater at Morehouse College, and then films. He had several small roles such as in the film Goodfellas before meeting his mentor, Morgan Freeman, and the director Spike Lee. After gaining critical acclaim for his role in Jungle Fever in 1991, he appeared in films such as Patriot Games, Amos & Andrew, True Romance and Jurassic Park."
+        }]
+  </script>
+</body>
+</html>

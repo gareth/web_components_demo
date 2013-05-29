@@ -1,0 +1,8 @@
+<element name="movielist-movie">
+  <h2>{{name}} ({{initial_release_date}})</h2></p>
+  <ul>
+    <template repeat="{{starring}}" if="{{starring}}">
+      <li><template bind="{{actor}}">{{name}}</template></li>
+    </template>
+  </ul>
+</element>

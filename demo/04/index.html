@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Web Components Demo</title>
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- <script src="/polymer/platform/platform.js"></script> -->
+  <script src="/polymer/platform/MDV/mdv.js"></script>
+
+  <style>
+  img.profile { display: inline-block; margin-right: 10px; }
+  </style>
+
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+  $(function() {
+    query = [
+    {
+      'name': "The Avengers",
+      'type': '/film/film',
+      'starring': [{
+        'actor': {
+          'name': null,
+          'id': null
+        }
+      }],
+      'initial_release_date': null,
+      'initial_release_date>': "2012"
+    }
+    ];
+
+    service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
+    url = service_url  + '?query=' + encodeURIComponent(JSON.stringify(query));
+
+    $.getJSON(url, function(response) {
+      document.getElementById('movieTemplate').model = response.result[0]
+    });
+  })
+  </script>
+
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-static-top"><div class="navbar-inner"><div class="container"><span class="brand">
+    Web Components 04 - Templates
+  </span></div></div></div>
+  <div class="container">
+
+    <h1>Movie</h1>
+    <p>Movie details</p>
+
+    <template id="movieTemplate" bind>
+      <h1>{{name}}</h1>
+      <p>Released {{initial_release_date}}</p>
+      <h2>Starring</h2>
+      <template id="actorTemplate" repeat="{{starring}}">
+        <section>
+          <template bind="{{actor}}">
+            <h3>{{name}}</h3>
+            <img class="profile" src="https://usercontent.googleapis.com/freebase/v1/image/{{id}}">
+            <p class="biog">{{description}}</p>
+          </template>
+        </section>
+      </template>
+    </template>
+
+
+  </div>
+</body>
+</html>

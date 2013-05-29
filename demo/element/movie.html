@@ -1,0 +1,27 @@
+<element name="movielist-movie">
+  <h2>{{name}} ({{initial_release_date}})</h2></p>
+  <ul>
+    <template repeat="{{starring}}" if="{{starring}}">
+      <li><template bind="{{actor}}">{{name}}</template></li>
+    </template>
+  </ul>
+  <script>
+    // When <element> is in document, we might run in wrong context.
+    // Only do work when this == <element>.
+    if (this !== window) {
+      var section = this.querySelector('section');
+
+      // Has built-in 'window' protection.
+      this.register({
+        prototype: {
+          readyCallback: function() {
+            this.innerHTML = section.innerHTML;
+          },
+          foo: function() {
+            console.log('foo() called');
+          }
+        }
+     });
+    }
+  </script>
+</element>
