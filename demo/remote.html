@@ -17,7 +17,7 @@
       ];
 
       service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
-      url = service_url  + '?query=' + encodeURIComponent(JSON.stringify(query));
+      url = service_url  + '?key=AIzaSyADKAkDbiKkPFhOyFnPZDZOigqGHGeDg_E&query=' + encodeURIComponent(JSON.stringify(query));
 
       $.getJSON(url, function(response) {
         var template = document.getElementById('movie');

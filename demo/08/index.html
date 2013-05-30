@@ -4,42 +4,9 @@
   <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
   <script src="/polymer/polymer.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-  <element name="movielist-search" attributes="value">
-    <template>
-      <style>
-      </style>
-      <section>
-        <h1>Movies starring {{value}}</h1>
-        <input value="{{value}}">
-        <template repeat="{{films}}">
-          <movielist-movie mid="{{id}}">
-            <template repeat="{{starring}}">
-              <movielist-performance name="{{actor}}" character="{{character}}">
-              </movielist-performance>
-            </template>
-          </movielist-movie>
-        </template>
-      </section>
-    </template>
-    <script>
-      Polymer.register(this)
-    </script>
-  </element>
-
-  <element name="movielist-movie" attributes="value">
-    <template>
-      <style>
-      </style>
-      <section>
-        <h1>{{name}}</h1>
-        <content></content>
-      </section>
-    </template>
-    <script>
-      Polymer.register(this)
-    </script>
-  </element>
+  <link rel="import" href="movielist.html">
 
 </head>
 <body>

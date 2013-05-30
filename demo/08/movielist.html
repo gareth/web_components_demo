@@ -1,0 +1,126 @@
+
+  <element name="movielist-search" attributes="value">
+    <template>
+      <style>
+      section {
+        border: 2px solid black;
+        padding: 0 10px;
+      }
+      </style>
+      <section>
+        <h1>Movies starring {{value}}</h1>
+        <input value="{{value}}">
+        <template repeat="{{films}}">
+          <movielist-movie mid="{{id}}"></movielist-movie>
+        </template>
+      </section>
+    </template>
+    <script>
+      Polymer.register(this,{
+        films: [],
+        valueChanged: function() {
+          var search = this;
+          if(this.wait) clearTimeout(this.wait);
+          this.wait = setTimeout(function() { search.reloadFilms() }, 500);
+        },
+        reloadFilms: function() {
+          var search = this;
+          console.log("Reload", this)
+          var query = [{
+            'name': this.value,
+            'type': '/film/actor',
+            'film': [{
+              'sort':'-film.initial_release_date',
+              'limit': 10,
+              'film': {
+                'id': null,
+                'name': null,
+                'initial_release_date': null
+              }
+            }],
+          }];
+
+          service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
+          url = service_url  + '?key=AIzaSyADKAkDbiKkPFhOyFnPZDZOigqGHGeDg_E&query=' + encodeURIComponent(JSON.stringify(query));
+
+          $.getJSON(url, function(response) {
+            var model = response.result[0];
+            search.films = model.film.map(function(performance) {return performance.film})
+          });
+        }
+      })
+    </script>
+  </element>
+
+  <element name="movielist-movie" attributes="mid">
+    <template>
+      <style>
+        .actor {
+          display: inline-block;
+          position: relative;
+          vertical-align: bottom;
+          margin: 5px;
+        }
+
+        .actor .name {
+          display: none;
+          position: absolute;
+          bottom: 0;
+          background: black;
+          color: white;
+          z-index: 2;
+        }
+
+        .actor:hover .name {
+          display: block;
+        }
+      </style>
+      <section>
+        <template bind="{{model}}">
+          <h1>{{name}} <template bind if="{{initial_release_date}}"><span class="release_date">({{initial_release_date}})</span></template></h1>
+          <template repeat="{{starring}}">
+            <template bind if="{{character}}">
+              <template bind="{{actor}}">
+                <div class="actor">
+                  <img src="https://usercontent.googleapis.com/freebase/v1/image{{id}}?key=AIzaSyADKAkDbiKkPFhOyFnPZDZOigqGHGeDg_E&amp;maxheight=100">
+                  <span class="character">{{character}}</span>
+                  <span class="name">{{name}}</span>
+                </div>
+              </template>
+            </template>
+          </template>
+        </template>
+      </section>
+    </template>
+    <script>
+      Polymer.register(this, {
+        model: {},
+        midChanged: function() {
+          var movie = this;
+          var query = [{
+            'name': null,
+            'id': this.mid,
+            'type': '/film/film',
+            'starring': [{
+              'character': null,
+              'actor': {
+                'name': null,
+                'id': null
+              },
+              limit: 5
+            }],
+            'initial_release_date': null
+          }];
+
+
+          service_url = 'https://www.googleapis.com/freebase/v1/mqlread';
+          url = service_url  + '?key=AIzaSyADKAkDbiKkPFhOyFnPZDZOigqGHGeDg_E&query=' + encodeURIComponent(JSON.stringify(query));
+
+          $.getJSON(url, function(response) {
+            movie.model = response.result[0];
+            console.log("Loaded",movie.model)
+          });
+        }
+      })
+    </script>
+  </element>
