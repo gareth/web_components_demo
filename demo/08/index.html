@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>Web Components Demo</title>
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <script src="/polymer/polymer.js"></script>
+
+  <element name="movielist-search" attributes="value">
+    <template>
+      <style>
+      </style>
+      <section>
+        <h1>Movies starring {{value}}</h1>
+        <input value="{{value}}">
+        <template repeat="{{films}}">
+          <movielist-movie mid="{{id}}">
+            <template repeat="{{starring}}">
+              <movielist-performance name="{{actor}}" character="{{character}}">
+              </movielist-performance>
+            </template>
+          </movielist-movie>
+        </template>
+      </section>
+    </template>
+    <script>
+      Polymer.register(this)
+    </script>
+  </element>
+
+  <element name="movielist-movie" attributes="value">
+    <template>
+      <style>
+      </style>
+      <section>
+        <h1>{{name}}</h1>
+        <content></content>
+      </section>
+    </template>
+    <script>
+      Polymer.register(this)
+    </script>
+  </element>
+
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-static-top"><div class="navbar-inner"><div class="container"><span class="brand">
+    Web Components 08 - Custom Elements
+  </span></div></div></div>
+  <div class="container">
+
+    <h1>Actor</h1>
+    <p>Information about some actors for you!</p>
+
+    <movielist-search value="Robert Downey Jr."></movielist-search>
+
+  </div>
+</body>
+</html>

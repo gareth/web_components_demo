@@ -22,7 +22,7 @@
 
     <template id="movieTemplate" bind>
       <h1>{{name}}</h1>
-      <p>{{initial_release_date}}</p>
+      <p>Released {{initial_release_date}}</p>
       <template id="actorTemplate" repeat="{{starring}}">
         <section>
           <template bind="{{actor}}">

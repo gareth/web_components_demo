@@ -22,7 +22,7 @@
 
     <template id="movieTemplate" bind>
       <h1>{{name}}</h1>
-      <p>{{initial_release_date}}</p>
+      <p>Released {{initial_release_date}}</p>
       <template id="actorTemplate" repeat="{{starring}}">
         <section>
           <template bind="{{actor}}">
@@ -49,9 +49,9 @@
         },
         {
           actor: {
-          name: "Samuel L. Jackson",
-          image: "https://usercontent.googleapis.com/freebase/v1/image/m/0f5xn",
-          description: " Samuel Leroy Jackson is an American film and television actor and film producer. After becoming involved with the Civil Rights Movement, he moved on to acting in theater at Morehouse College, and then films. He had several small roles such as in the film Goodfellas before meeting his mentor, Morgan Freeman, and the director Spike Lee. After gaining critical acclaim for his role in Jungle Fever in 1991, he appeared in films such as Patriot Games, Amos & Andrew, True Romance and Jurassic Park."
+            name: "Samuel L. Jackson",
+            image: "https://usercontent.googleapis.com/freebase/v1/image/m/0f5xn",
+            description: " Samuel Leroy Jackson is an American film and television actor and film producer. After becoming involved with the Civil Rights Movement, he moved on to acting in theater at Morehouse College, and then films. He had several small roles such as in the film Goodfellas before meeting his mentor, Morgan Freeman, and the director Spike Lee. After gaining critical acclaim for his role in Jungle Fever in 1991, he appeared in films such as Patriot Games, Amos & Andrew, True Romance and Jurassic Park."
           }
         }]
       }
