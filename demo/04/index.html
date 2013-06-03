@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Web Components Demo</title>
   <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-  <!-- <script src="/polymer/platform/platform.js"></script> -->
-  <script src="/polymer/platform/MDV/mdv.js"></script>
+  <script src="/polymer/platform/platform.js"></script>
+  <!-- <script src="/polymer/platform/MDV/mdv.js"></script> -->
 
   <style>
   img.profile { display: inline-block; margin-right: 10px; }
@@ -12,6 +13,12 @@
 
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script>
+
+  /*
+    As with any data-driven app, things get more interesting when the data is
+    loaded remotely from a third party service
+   */
+
   $(function() {
     query = [
     {
@@ -32,6 +39,7 @@
     url = service_url  + '?key=AIzaSyADKAkDbiKkPFhOyFnPZDZOigqGHGeDg_E&query=' + encodeURIComponent(JSON.stringify(query));
 
     $.getJSON(url, function(response) {
+      console.log("Setting model:", response.result[0])
       document.getElementById('movieTemplate').model = response.result[0]
     });
   })

@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Web Components Demo</title>
   <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-  <!-- <script src="/polymer/platform/platform.js"></script> -->
-  <script src="/polymer/platform/MDV/mdv.js"></script>
+  <script src="/polymer/platform/platform.js"></script>
+  <!-- <script src="/polymer/platform/MDV/mdv.js"></script> -->
 
   <style>
     img.profile { float: left; margin-right: 10px; }
@@ -37,6 +38,15 @@
 
   </div>
   <script>
+
+    /*
+      Templates can even be nested, with each subtemplate bound to a property
+      of the parent template's model.
+
+      Again, this binding is dynamic and the rendering tracks the underlying
+      object
+     */
+
     document.getElementById('movieTemplate').model = {
       name: "The Avengers",
       initial_release_date: "2012-11-04",

@@ -1,10 +1,16 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Web Components Demo</title>
   <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-  <!-- <script src="/polymer/platform/platform.js"></script> -->
-  <script src="/polymer/platform/MDV/mdv.js"></script>
+  <!--
+    In all of these examples, platform.js or polymer.js include the JS polyfill
+    that enable support in browsers without native support.
+  -->
+
+  <script src="/polymer/platform/platform.js"></script>
+  <!-- <script src="/polymer/platform/MDV/mdv.js"></script> -->
 
   <style>
     img.profile { float: left; margin-right: 10px; }
@@ -30,6 +36,16 @@
 
   </div>
   <script>
+
+    /*
+      Setting the .model property of a <template> with a binding is enough to
+      cause that template to be rendered with that data model.
+
+      The binding is dynamic, so you can drop into the javascript console and
+      edit the object at `$('template').model` to see it dynamically update in
+      the DOM
+     */
+
     document.getElementById('actorTemplate').model = {
       name: "Robert Downey Jr",
       image: "https://usercontent.googleapis.com/freebase/v1/image/m/063gl45",

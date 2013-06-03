@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Web Components Demo</title>
   <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-  <!-- <script src="/polymer/platform/platform.js"></script> -->
-  <script src="/polymer/platform/MDV/mdv.js"></script>
+  <script src="/polymer/platform/platform.js"></script>
+  <!-- <script src="/polymer/platform/MDV/mdv.js"></script> -->
 
   <style>
     img.profile { float: left; margin-right: 10px; }
@@ -19,6 +20,16 @@
 
     <h1>Movie</h1>
     <p>Movie details</p>
+
+    <!--
+
+      Bindings are also two-way. If the bound value is tied to a
+      user-controlled attribute like a checkbox's `checked` property or a text
+      input's `value` then any updates will be reflected automatically in the
+      underlying model, and by extension any rendered templates which are tied
+      to that model
+
+    -->
 
     <template id="movieTemplate" bind>
       <h1>{{name}}</h1>

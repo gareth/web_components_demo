@@ -1,9 +1,35 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Web Components Demo</title>
   <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+  <!--
+    We're switching from platform.js to polymer.js here.
+
+    platform.js provides the polyfills which support the specification, however
+    Polymer adds an opinion layer which offers a much simpler API for some
+    operations.
+
+    Think of it as being similar to using jQuery's $.on() rather than native
+    addEventListener.
+
+    In this case we use it to register custom elements.
+  -->
   <script src="/polymer/polymer.js"></script>
+
+  <!--
+
+    Custom elements allow you to encapsulate styling and functionality inside a
+    new HTML tag. For this demo I used Polymer's approach, which takes the
+    child <template> from a custom element and creates a shadow root out of it.
+
+    Shadow roots act like a totally separate embedded DOM. By default not much
+    can cross the boundary between a shadow DOM and its host DOM, but this can
+    be configured by programatically changing the properties of the shadow root
+    object.
+
+  -->
 
   <element name="movielist-actor" attributes="name image">
     <template>
